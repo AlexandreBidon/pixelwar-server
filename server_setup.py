@@ -43,7 +43,7 @@ class Server():
         @self.app.websocket("/ws")
         async def websocket_endpoint(websocket: WebSocket):
             await self.manager.connect(websocket)
-            await self.manager.send_personal_message(self.pixel_map.return_matrix(), websocket)
+            await self.manager.send_personal_message("TEST", websocket)
             try:
                 while True:
                     data = await websocket.receive_text()
