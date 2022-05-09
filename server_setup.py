@@ -1,5 +1,6 @@
 from typing import List
 import json
+import ast
 
 from fastapi import Cookie, Depends, FastAPI, Query, WebSocket, status, WebSocketDisconnect
 from fastapi.responses import HTMLResponse
@@ -48,7 +49,7 @@ class Server():
             try:
                 while True:
                     raw_data = await websocket.receive_text()
-                    data = json.loads(raw_data)
+                    data = ast.literal_eval(raw_data)
                     self.pixel_map.modify_pixel(data)
                     await self.manager.broadcast(data)
             except WebSocketDisconnect:
