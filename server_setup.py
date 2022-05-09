@@ -40,7 +40,7 @@ class Server():
         async def get():
             return self.pixel_map.return_matrix()
 
-        @self.app.websocket("/ws/")
+        @self.app.websocket("/ws")
         async def websocket_endpoint(websocket: WebSocket):
             await self.manager.connect(websocket)
             await self.manager.send_personal_message(self.pixel_map.return_matrix())
