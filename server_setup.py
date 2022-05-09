@@ -48,7 +48,7 @@ class Server():
             try:
                 while True:
                     raw_data = await websocket.receive_text()
-                    data = json.load(raw_data)
+                    data = json.loads(raw_data)
                     self.pixel_map.modify_pixel(data)
                     await self.manager.broadcast(data)
             except WebSocketDisconnect:

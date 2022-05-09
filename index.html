@@ -24,7 +24,7 @@
         };
         function sendMessage(event) {
             var input = document.getElementById("messageText")
-            ws.send({ "x": 1, "y": 1, "color": "test" })
+            ws.send({ 'x': 1, 'y': 1, 'color': "test" })
             input.value = ''
             event.preventDefault()
         }
