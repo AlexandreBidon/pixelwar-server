@@ -1,4 +1,5 @@
 from typing import List
+import json
 
 from fastapi import Cookie, Depends, FastAPI, Query, WebSocket, status, WebSocketDisconnect
 from fastapi.responses import HTMLResponse
@@ -46,7 +47,8 @@ class Server():
             await self.manager.send_personal_message("TEST", websocket)
             try:
                 while True:
-                    data = await websocket.receive_text()
+                    raw_data = await websocket.receive_text()
+                    data = json.loads(raw_data)
                     self.pixel_map.modify_pixel(data)
                     await self.manager.broadcast(data)
             except WebSocketDisconnect:
