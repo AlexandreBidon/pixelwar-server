@@ -36,9 +36,9 @@ class Server():
         async def get():
             return ""
 
-        @self.app.get("/")
+        @self.app.get("/status")
         async def get():
-            return ""
+            return self.pixel_map.return_matrix()
 
         @self.app.websocket("/ws/")
         async def websocket_endpoint(websocket: WebSocket):
