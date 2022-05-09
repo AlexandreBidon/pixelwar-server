@@ -51,6 +51,6 @@ class Server():
                     raw_data = await websocket.receive_text()
                     data = ast.literal_eval(raw_data)
                     self.pixel_map.modify_pixel(data)
-                    await self.manager.broadcast(data)
+                    await self.manager.broadcast(raw_data)
             except WebSocketDisconnect:
                 self.manager.disconnect(websocket)
