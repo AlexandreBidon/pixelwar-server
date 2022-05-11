@@ -38,6 +38,10 @@ class Server():
         async def get():
             return ""
 
+        @self.app.get("/reset")
+        async def get():
+            self.pixel_map.reset()
+
         @self.app.get("/status")
         async def get():
             return self.pixel_map.return_matrix()
