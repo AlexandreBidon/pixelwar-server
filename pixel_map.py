@@ -4,6 +4,9 @@ import logging
 class PixelMap():
 
     def __init__(self):
+        self.reset()
+
+    def reset(self):
         line = ["#ffffff"] * 37
         self.__matrix = []
         for i in range(57):

@@ -8,7 +8,7 @@ def main():
     Runs the web service
     """
     web_service = Server()
-    uvicorn.run(web_service.app, host="0.0.0.0", port=80)
+    uvicorn.run(web_service.app, host="0.0.0.0", port=8000)
 
 
 if __name__ == "__main__":
