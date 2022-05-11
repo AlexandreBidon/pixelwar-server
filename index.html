@@ -14,7 +14,7 @@
     <ul id='messages'>
     </ul>
     <script>
-        var ws = new WebSocket("ws://51.91.209.204:8000/ws");
+        var ws = new WebSocket("ws://51.91.209.204:80/ws");
         ws.onmessage = function (event) {
             var messages = document.getElementById('messages')
             var message = document.createElement('li')
@@ -24,7 +24,7 @@
         };
         function sendMessage(event) {
             var input = document.getElementById("messageText")
-            ws.send("{ 'x': 1, 'y': 1, 'color': 'test' }")
+            ws.send("{ 'x': 5, 'y': 5, 'color': 'test2' }")
             input.value = ''
             event.preventDefault()
         }

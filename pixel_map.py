@@ -4,7 +4,10 @@ import logging
 class PixelMap():
 
     def __init__(self):
-        self.__matrix = [["#ffffff"] * 37] * 57
+        line = ["#ffffff"] * 37
+        self.__matrix = []
+        for i in range(57):
+            self.__matrix.append(line.copy())
 
     def modify_pixel(self, data):
         logging.info("Pixel at {},{} was changed".format(data["x"], data["y"]))
