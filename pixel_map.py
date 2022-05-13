@@ -1,4 +1,5 @@
 import logging
+import json
 
 
 class PixelMap():
@@ -17,4 +18,4 @@ class PixelMap():
         self.__matrix[data["y"]][data["x"]] = data["color"]
 
     def return_matrix(self):
-        return self.__matrix
+        return json.dumps(self.__matrix)
