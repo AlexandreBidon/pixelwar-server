@@ -8,7 +8,7 @@ class PixelMap():
         self.reset()
 
     def reset(self):
-        line = ["#6a5cff"] * 37
+        line = ["#ffffff"] * 37
         self.__matrix = []
         for i in range(57):
             self.__matrix.append(line.copy())
