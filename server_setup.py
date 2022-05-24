@@ -49,13 +49,13 @@ class Server():
         @self.app.websocket("/ws")
         async def websocket_endpoint(websocket: WebSocket):
             await self.manager.connect(websocket)
-            await self.manager.send_personal_message(self.pixel_map.return_matrix(), websocket)
+            await self.manager.send_personal_message(json.dumps({"type": "init", "message": self.pixel_map.return_matrix()}), websocket)
             try:
                 while True:
                     raw_data = await websocket.receive_text()
                     print(raw_data)
                     data = json.loads(raw_data)
                     self.pixel_map.modify_pixel(data)
-                    await self.manager.broadcast(raw_data)
+                    await self.manager.broadcast(json.dumps({"type": "update", "message": raw_data}))
             except WebSocketDisconnect:
                 self.manager.disconnect(websocket)
