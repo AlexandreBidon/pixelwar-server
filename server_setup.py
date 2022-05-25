@@ -14,9 +14,15 @@ class ConnectionManager:
 
     async def connect(self, websocket: WebSocket):
         await websocket.accept()
+        for active_websocket in self.active_connections:
+            if active_websocket == websocket:
+                print("removing " + active_websocket)
+                self.active_connections.remove(active_websocket)
+        print("connecting " + websocket)
         self.active_connections.append(websocket)
 
     def disconnect(self, websocket: WebSocket):
+        print(websocket + "disconnected")
         self.active_connections.remove(websocket)
 
     async def send_personal_message(self, message: str, websocket: WebSocket):
@@ -49,12 +55,11 @@ class Server():
         @self.app.websocket("/ws")
         async def websocket_endpoint(websocket: WebSocket):
             await self.manager.connect(websocket)
-            print(self.pixel_map.return_matrix())
             await self.manager.send_personal_message(json.dumps({"type": "init", "message": self.pixel_map.return_matrix()}), websocket)
             try:
                 while True:
                     raw_data = await websocket.receive_text()
-                    print(raw_data)
+                    print(websocket + " : " + raw_data)
                     data = json.loads(raw_data)
                     self.pixel_map.modify_pixel(data)
                     await self.manager.broadcast(json.dumps({"type": "init", "message": self.pixel_map.return_matrix()}))
