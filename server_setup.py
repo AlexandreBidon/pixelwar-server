@@ -14,10 +14,6 @@ class ConnectionManager:
 
     async def connect(self, websocket: WebSocket):
         await websocket.accept()
-        for active_websocket in self.active_connections:
-            if active_websocket == websocket:
-                print("removing " + active_websocket)
-                self.disconnect(active_websocket)
         print("connecting " + websocket)
         self.active_connections.append(websocket)
 
