@@ -1,5 +1,5 @@
-# pixelwar-server
- Server side of the [Pixelwar app](https://github.com/AlexandreBidon/pixelwar).
+# Pixel War server
+ Server side of the [Pixel War app](https://github.com/AlexandreBidon/pixelwar).
 
 ## Launch the server
 First, install the dependencies with `pip install -r requirements.txt`. You can then launch the `__main__.py` to start the server.
