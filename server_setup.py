@@ -14,11 +14,9 @@ class ConnectionManager:
 
     async def connect(self, websocket: WebSocket):
         await websocket.accept()
-        print("connecting " + websocket)
         self.active_connections.append(websocket)
 
     def disconnect(self, websocket: WebSocket):
-        print(websocket + "disconnected")
         self.active_connections.remove(websocket)
 
     async def send_personal_message(self, message: str, websocket: WebSocket):
