@@ -17,7 +17,7 @@ class ConnectionManager:
         for active_websocket in self.active_connections:
             if active_websocket == websocket:
                 print("removing " + active_websocket)
-                self.active_connections.remove(active_websocket)
+                self.disconnect(active_websocket)
         print("connecting " + websocket)
         self.active_connections.append(websocket)
 
