@@ -53,7 +53,7 @@ class Server():
             try:
                 while True:
                     raw_data = await websocket.receive_text()
-                    print(websocket + " : " + raw_data)
+                    print(raw_data)
                     data = json.loads(raw_data)
                     self.pixel_map.modify_pixel(data)
                     await self.manager.broadcast(json.dumps({"type": "init", "message": self.pixel_map.return_matrix()}))
